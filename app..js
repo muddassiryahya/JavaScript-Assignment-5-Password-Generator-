@@ -1,19 +1,33 @@
-var radnomValues = "Ap1o5-Z7!y@#9Sjm)5*6^X8+&3(CmkFeR2T$cG1%B"
-var password = ""
+var upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+var lowerCase = "abcdefghijklmnopqrstuvwxyz";
+var number = "0123456789";
+var symbol = "@#$%^&*()_+~|{}[]<>/?-="
+var allCharacters = upperCase + lowerCase + number;
 
-for (var i = 0; i < 10; i++){
-    var radnomNumber = Math.floor(Math.random() * radnomValues.length)
-    password += radnomValues[radnomNumber]
+
+var passwordBox = document.getElementById("password");
+var length = 10;
+
+function createPassword() {
+    var password = "";
+
+    password += upperCase[Math.floor(Math.random() * upperCase.length)];
+    password += number[Math.floor(Math.random() * number.length)];
+    password += lowerCase[Math.floor(Math.random() * lowerCase.length)];
+    password += symbol[Math.floor(Math.random() * symbol.length)];
+    while (length > password.length) {
+        password += allCharacters[Math.floor(Math.random() * allCharacters.length)];
+    }
+    passwordBox.value = password;
+
+    // console.log(password);
 }
 
-console.log(password)
-swal({
-                    title: "Yours Password is " + password,
-                    text: "You clicked the button!",
-                    icon: "success",
-                    button: "Aww yiss!",
-                  });
+
+function copyPassword() {
+    passwordBox.select()
+    document.execCommand("copy")
+}
 
 
 
-                  
